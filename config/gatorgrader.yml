@@ -1,0 +1,36 @@
+---
+name: cmpsc-302-spring-2019-lab7
+break: true
+indent: 4
+---
+# --> check the source code for various characteristics
+# note that without an "--exact" the check is an "at least"
+src/www/:
+    index.html:
+        --exists
+        --fragment "TODO" --count 0 --exact
+src/www/css:
+    site.css:
+        --exists
+        --fragment "TODO" --count 0 --exact
+# --> check the technical writing
+# mdl is a Markdown linting tool
+# proselint checks writing for common mistakes
+writing/reflection.md:
+    mdl
+    proselint
+    --paragraphs 5 --exact
+    --words 100
+# --> check the submission image exists
+images/gallery_submission.png:
+    --exists
+# --> check the number of commits beyond a threshold
+--commits 10
+# --> check that the linter executes and produces 0 lines of output
+src/www/css:
+    site.css:
+        --exists
+        --fragment "TODO" --count 0 --exact
+--command "htmlhint src/www/index.html" --executes
+--command "htmlhint src/www/index.html" --count 1 --exact
+--command "htmlhint src/www/index.html" --fragment "no errors found" --count 1 --exact
